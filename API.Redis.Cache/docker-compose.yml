@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  redis-master:
+    container_name: redis-master
+    image: docker.io/bitnami/redis:6.2
+    ports:
+      - '6379:6379'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_REPLICATION_MODE=master
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    volumes:
+      - 'redis_data:/bitnami/redis/data'
+
+volumes:
+  redis_data:
+    driver: local
